@@ -1,22 +1,21 @@
+#include <algorithm>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {
-  int t;
-  cin >> t;
-  while (t--) {
-    string s;
-    cin >> s;
-    bool yes = 0;
-    for (int i = 1; i < s.length(); i++) {
-      if (s[i - 1] == ')' && s[i] == '(') {
-        yes = 1;
-        break;
-      }
+  int n;
+  cin >> n;
+  int k[n];
+  vector<int> v;
+  for (int i = 0; i < n; i++) {
+    cin >> k[i];
+    auto it = upper_bound(v.begin(), v.end(), k[i]);
+    if (it == v.end()) {
+      v.push_back(k[i]);
+    } else {
+      *it = k[i];
     }
-    if (yes)
-      cout << "yes" << endl;
-    else
-      cout << "no" << endl;
   }
+  cout << v.size() << endl;
 }
